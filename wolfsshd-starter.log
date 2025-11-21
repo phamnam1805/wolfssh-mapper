@@ -1,0 +1,273 @@
+28    execve("/usr/local/bin/wolfsshd", ["wolfsshd", "-d", "-h", "/etc/ssh/sshd_rsa", "-D"], 0x7ffc0ff8fce8 /* 7 vars */) = 0
+28    brk(NULL)                         = 0x5c30e2a26000
+28    mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x766eefdf3000
+28    access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+28    openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+28    fstat(3, {st_mode=S_IFREG|0644, st_size=10311, ...}) = 0
+28    mmap(NULL, 10311, PROT_READ, MAP_PRIVATE, 3, 0) = 0x766eefdf0000
+28    close(3)                          = 0
+28    openat(AT_FDCWD, "/usr/local/lib/libwolfssh.so.18", O_RDONLY|O_CLOEXEC) = 3
+28    read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+28    fstat(3, {st_mode=S_IFREG|0755, st_size=758984, ...}) = 0
+28    mmap(NULL, 366232, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x766eefd96000
+28    mmap(0x766eefd9d000, 262144, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000) = 0x766eefd9d000
+28    mmap(0x766eefddd000, 69632, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x47000) = 0x766eefddd000
+28    mmap(0x766eefdee000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x57000) = 0x766eefdee000
+28    close(3)                          = 0
+28    openat(AT_FDCWD, "/usr/local/lib/libwolfssl.so.43", O_RDONLY|O_CLOEXEC) = 3
+28    read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+28    fstat(3, {st_mode=S_IFREG|0755, st_size=3415312, ...}) = 0
+28    mmap(NULL, 1657576, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x766eefc01000
+28    mmap(0x766eefc34000, 1110016, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x33000) = 0x766eefc34000
+28    mmap(0x766eefd43000, 270336, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x142000) = 0x766eefd43000
+28    mmap(0x766eefd85000, 32768, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x183000) = 0x766eefd85000
+28    mmap(0x766eefd8d000, 35560, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x766eefd8d000
+28    close(3)                          = 0
+28    openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libcrypt.so.1", O_RDONLY|O_CLOEXEC) = 3
+28    read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+28    fstat(3, {st_mode=S_IFREG|0644, st_size=206776, ...}) = 0
+28    mmap(NULL, 242344, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x766eefbc5000
+28    mmap(0x766eefbc7000, 90112, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x766eefbc7000
+28    mmap(0x766eefbdd000, 106496, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x18000) = 0x766eefbdd000
+28    mmap(0x766eefbf7000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x31000) = 0x766eefbf7000
+28    mmap(0x766eefbf9000, 29352, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x766eefbf9000
+28    close(3)                          = 0
+28    openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+28    read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0p\236\2\0\0\0\0\0"..., 832) = 832
+28    pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 840, 64) = 840
+28    fstat(3, {st_mode=S_IFREG|0755, st_size=2003408, ...}) = 0
+28    pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 840, 64) = 840
+28    mmap(NULL, 2055800, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x766eef9cf000
+28    mmap(0x766eef9f7000, 1462272, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x766eef9f7000
+28    mmap(0x766eefb5c000, 352256, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x18d000) = 0x766eefb5c000
+28    mmap(0x766eefbb2000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e2000) = 0x766eefbb2000
+28    mmap(0x766eefbb8000, 52856, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x766eefbb8000
+28    close(3)                          = 0
+28    openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+28    read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+28    fstat(3, {st_mode=S_IFREG|0644, st_size=977112, ...}) = 0
+28    mmap(NULL, 978968, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x766eef8df000
+28    mmap(0x766eef8f0000, 512000, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x11000) = 0x766eef8f0000
+28    mmap(0x766eef96d000, 393216, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8e000) = 0x766eef96d000
+28    mmap(0x766eef9cd000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xed000) = 0x766eef9cd000
+28    close(3)                          = 0
+28    mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x766eef8dd000
+28    mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x766eef8da000
+28    arch_prctl(ARCH_SET_FS, 0x766eef8db1c0) = 0
+28    set_tid_address(0x766eef8db490)   = 28
+28    set_robust_list(0x766eef8db4a0, 24) = 0
+28    rseq(0x766eef8da680, 0x20, 0, 0x53053053) = 0
+28    mprotect(0x766eefbb2000, 16384, PROT_READ) = 0
+28    mprotect(0x766eef9cd000, 4096, PROT_READ) = 0
+28    mprotect(0x766eefbf7000, 4096, PROT_READ) = 0
+28    mprotect(0x766eefd85000, 12288, PROT_READ) = 0
+28    mprotect(0x766eefdee000, 4096, PROT_READ) = 0
+28    mprotect(0x5c30bc451000, 4096, PROT_READ) = 0
+28    mprotect(0x766eefe29000, 8192, PROT_READ) = 0
+28    prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+28    munmap(0x766eefdf0000, 10311)     = 0
+28    rt_sigaction(SIGINT, {sa_handler=0x5c30bc4462ba, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x766eefa0edf0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+28    getrandom("\x66\xae\xb6\x9e\x87\x12\x1e\x0d", 8, GRND_NONBLOCK) = 8
+28    brk(NULL)                         = 0x5c30e2a26000
+28    brk(0x5c30e2a47000)               = 0x5c30e2a47000
+28    openat(AT_FDCWD, "/etc/ssh/sshd_config", O_RDONLY) = 3
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] parsing config "..., 58) = 58
+28    fstat(3, {st_mode=S_IFREG|0600, st_size=211, ...}) = 0
+28    read(3, "# wolfSSH sshd configuration fil"..., 4096) = 211
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Setting login g"..., 49) = 49
+28    read(3, "", 4096)                 = 0
+28    close(3)                          = 0
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Starting wolfSS"..., 51) = 51
+28    openat(AT_FDCWD, "/etc/ssh/sshd_rsa", O_RDONLY) = 3
+28    fstat(3, {st_mode=S_IFREG|0644, st_size=1704, ...}) = 0
+28    fstat(3, {st_mode=S_IFREG|0644, st_size=1704, ...}) = 0
+28    lseek(3, 0, SEEK_SET)             = 0
+28    read(3, "-----BEGIN PRIVATE KEY-----\nMIIE"..., 1704) = 1704
+28    lseek(3, 1704, SEEK_SET)          = 1704
+28    close(3)                          = 0
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Setting default"..., 54) = 54
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Setting Unix pa"..., 45) = 45
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Setting Unix pu"..., 47) = 47
+28    socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+28    connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+28    close(3)                          = 0
+28    socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+28    connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+28    close(3)                          = 0
+28    newfstatat(AT_FDCWD, "/etc/nsswitch.conf", {st_mode=S_IFREG|0644, st_size=494, ...}, 0) = 0
+28    newfstatat(AT_FDCWD, "/", {st_mode=S_IFDIR|0755, st_size=4096, ...}, 0) = 0
+28    openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 3
+28    fstat(3, {st_mode=S_IFREG|0644, st_size=494, ...}) = 0
+28    read(3, "# /etc/nsswitch.conf\n#\n# Example"..., 4096) = 494
+28    read(3, "", 4096)                 = 0
+28    fstat(3, {st_mode=S_IFREG|0644, st_size=494, ...}) = 0
+28    close(3)                          = 0
+28    openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+28    fstat(3, {st_mode=S_IFREG|0644, st_size=913, ...}) = 0
+28    lseek(3, 0, SEEK_SET)             = 0
+28    read(3, "root:x:0:0:root:/root:/bin/bash\n"..., 4096) = 913
+28    close(3)                          = 0
+28    getgid()                          = 0
+28    getuid()                          = 0
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Starting to lis"..., 47) = 47
+28    socket(AF_INET, SOCK_STREAM, IPPROTO_IP) = 3
+28    rt_sigaction(SIGPIPE, {sa_handler=SIG_IGN, sa_mask=[PIPE], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x766eefa0edf0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+28    setsockopt(3, SOL_TCP, TCP_NODELAY, [1], 4) = 0
+28    setsockopt(3, SOL_SOCKET, SO_REUSEADDR, [1], 4) = 0
+28    bind(3, {sa_family=AF_INET, sin_port=htons(22), sin_addr=inet_addr("0.0.0.0")}, 16) = 0
+28    listen(3, 5)                      = 0
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Listening on po"..., 38) = 38
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Lowering permis"..., 44) = 44
+28    setresgid(-1, 1000, -1)           = 0
+28    setresuid(-1, 1000, -1)           = 0
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL) = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL) = 1 (in [3], left {tv_sec=0, tv_nsec=342468396})
+28    getpid()                          = 28
+28    write(2, "[PID 28]: [SSHD] Incoming TCP da"..., 41) = 41
+28    accept(3, {sa_family=AF_INET, sin_port=htons(56088), sin_addr=inet_addr("172.18.0.1")}, [28 => 16]) = 4
+28    fcntl(4, F_GETFL)                 = 0x2 (flags O_RDWR)
+28    fcntl(4, F_SETFL, O_RDWR|O_NONBLOCK) = 0
+28    rt_sigprocmask(SIG_BLOCK, ~[], [], 8) = 0
+28    clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x766eef8db490) = 29
+29    set_robust_list(0x766eef8db4a0, 24 <unfinished ...>
+28    rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+29    <... set_robust_list resumed>)    = 0
+28    <... rt_sigprocmask resumed>NULL, 8) = 0
+29    rt_sigprocmask(SIG_SETMASK, [],  <unfinished ...>
+28    rt_sigaction(SIGCHLD, {sa_handler=SIG_IGN, sa_mask=[CHLD], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x766eefa0edf0},  <unfinished ...>
+29    <... rt_sigprocmask resumed>NULL, 8) = 0
+28    <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+28    getpid( <unfinished ...>
+29    close(3 <unfinished ...>
+28    <... getpid resumed>)             = 28
+29    <... close resumed>)              = 0
+28    write(2, "[PID 28]: [SSHD] Spawned new pro"..., 41 <unfinished ...>
+29    rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x766eefa0edf0},  <unfinished ...>
+28    <... write resumed>)              = 41
+29    <... rt_sigaction resumed>{sa_handler=0x5c30bc4462ba, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x766eefa0edf0}, 8) = 0
+28    close(4)                          = 0
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL <unfinished ...>
+29    openat(AT_FDCWD, "/dev/urandom", O_RDONLY) = 3
+29    read(3, "\300{\244@\210-c\326\316\265\321V^\326\30mY2\277k\302\4\241\352\355EH\4\246\206\224e"..., 52) = 52
+29    close(3)                          = 0
+29    rt_sigaction(SIGALRM, {sa_handler=0x5c30bc44885e, sa_mask=[ALRM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x766eefa0edf0}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+29    alarm(120)                        = 0
+29    sendto(4, "SSH-2.0-wolfSSHv1.4.21\r\n", 24, 0, NULL, 0) = 24 => Send Banner
+29    recvfrom(4, "SSH-2.0-ssh-mapper\r\n", 255, 0, NULL, NULL) = 20 => Receive Banner
+29    sendto(4, "\0\0\1\264\n\24\354\232\306&\177\274\344\211\331\3275\254D\316f\"\0\0\0\231ecdh-s"..., 440, 0, NULL, 0) = 440 => Send KexInit
+29    recvfrom(4, 0x5c30e2a2ade0, 8, 0, NULL, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=976026161})
+29    recvfrom(4, "\0\0\0\324", 8, 0, NULL, NULL) = 4 => ReceiveKexInit (1/3)
+29    recvfrom(4, 0x5c30e2a2ade4, 4, 0, NULL, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=961898255})
+29    recvfrom(4, "\v\24\0\0", 4, 0, NULL, NULL) = 4 => ReceiveKexInit (2/3)
+29    recvfrom(4, "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\22ecdh-sha2-nist"..., 208, 0, NULL, NULL) = 208 => ReceiveKexInit (3/3) => 216 bytes total
+29    recvfrom(4, 0x5c30e2a2ade0, 8, 0, NULL, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL <unfinished ...>
+28    <... pselect6 resumed>)           = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL <unfinished ...>
+29    <... pselect6 resumed>)           = 0 (Timeout)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=974786169})
+29    recvfrom(4, "\0\0\0L\5\36\0\0", 8, 0, NULL, NULL) = 8 => Receive KexECDHInit (1/2)
+29    recvfrom(4, "\0A\4\250\f|i_\31561\n\34-\t<\371/\265\320\0322t\340\200\341\237\377\214\273\3a"..., 72, 0, NULL, NULL) = 72 => Receive KexECDHInit (2/2) => 80 bytes total
+29    sendto(4, "\0\0\2\204\n\37\0\0\1\27\0\0\0\7ssh-rsa\0\0\0\3\1\0\1\0\0\1\1"..., 664, 0, NULL, 0) = 664 => Send KexECDHReply + NewKeys
+29    recvfrom(4, 0x5c30e2a2ade0, 8, 0, NULL, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL <unfinished ...>
+28    <... pselect6 resumed>)           = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL <unfinished ...>
+29    <... pselect6 resumed>)           = 0 (Timeout)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=949075341})
+29    recvfrom(4, "\0\0\0\f\n\25\0\0", 8, 0, NULL, NULL) = 8 => Receive NewKeys (1/2)
+29    recvfrom(4, "\0\0\0\0\0\0\0\0", 8, 0, NULL, NULL) = 8 => Receive NewKeys (2/2) => 16 bytes total
+29    recvfrom(4, 0x5c30e2a2ade0, 16, 0, NULL, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL <unfinished ...>
+28    <... pselect6 resumed>)           = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL <unfinished ...>
+29    <... pselect6 resumed>)           = 0 (Timeout)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=996374025})
+29    recvfrom(4, "\0\0\0 \326\274\361\247\n\364bj\232\235\243\276", 16, 0, NULL, NULL) = 16
+29    recvfrom(4, "q\306\273\\\352IH\360' \205Te2p \326nG\16}\213\220$\206\243\337!0\336\207\344"..., 36, 0, NULL, NULL) = 36 => Receive ServiceRequestUserAuth ( 16 in the previous line + 36 = 52 )
+29    sendto(4, "\0\0\0 \17{\262\324\243\311+y\vK\210\211L\222\17\305\306o\22x(T\251\353\333]\256\16"..., 52, 0, NULL, 0) = 52 => Send ServiceAccept
+29    recvfrom(4, 0x5c30e2a2ade0, 16, 0, NULL, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL <unfinished ...>
+28    <... pselect6 resumed>)           = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL <unfinished ...>
+29    <... pselect6 resumed>)           = 0 (Timeout)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=942440386})
+29    recvfrom(4, "\0\0\0@\332\tY\2476D\377\302\264uA/", 16, 0, NULL, NULL) = 16 => Receive AuthRequestPassword (1/2)
+29    recvfrom(4, "y\0\r=\3\324\313\340e\2\"G\337\273\357v\270\276M\357\312L\346\232\10OA\334\347+v4"..., 68, 0, NULL, NULL) = 68  => Receive AuthRequestPassword (2/2) => 84 bytes total
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] Checking user n"..., 41) = 41
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] Unix check user"..., 33) = 33
+29    newfstatat(AT_FDCWD, "/etc/nsswitch.conf", {st_mode=S_IFREG|0644, st_size=494, ...}, 0) = 0
+29    openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+29    fstat(3, {st_mode=S_IFREG|0644, st_size=913, ...}) = 0
+29    lseek(3, 0, SEEK_SET)             = 0
+29    read(3, "root:x:0:0:root:/root:/bin/bash\n"..., 4096) = 913
+29    close(3)                          = 0
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] User ok.\n", 26) = 26
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] Attempting to r"..., 55) = 55
+29    setresgid(-1, 0, -1)              = 0
+29    setresuid(-1, 0, -1)              = 0
+29    newfstatat(AT_FDCWD, "/etc/nsswitch.conf", {st_mode=S_IFREG|0644, st_size=494, ...}, 0) = 0
+29    openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+29    fstat(3, {st_mode=S_IFREG|0644, st_size=913, ...}) = 0
+29    lseek(3, 0, SEEK_SET)             = 0
+29    read(3, "root:x:0:0:root:/root:/bin/bash\n"..., 4096) = 913
+29    close(3)                          = 0
+29    newfstatat(AT_FDCWD, "/etc/nsswitch.conf", {st_mode=S_IFREG|0644, st_size=494, ...}, 0) = 0
+29    openat(AT_FDCWD, "/etc/shadow", O_RDONLY|O_CLOEXEC) = 3
+29    fstat(3, {st_mode=S_IFREG|0640, st_size=598, ...}) = 0
+29    lseek(3, 0, SEEK_SET)             = 0
+29    read(3, "root:*:20409:0:99999:7:::\ndaemon"..., 4096) = 598
+29    close(3)                          = 0
+29    mmap(NULL, 16801856, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x766eee8d3000
+29    munmap(0x766eee8d3000, 16801856)  = 0
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] Password ok.\n", 30) = 30
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] Lowering permis"..., 44) = 44
+29    setresgid(-1, 1000, -1)           = 0
+29    setresuid(-1, 1000, -1)           = 0
+29    sendto(4, "\0\0\0\20\350\270(\304#\223\351P\355\10\334\265\24\244\227\266v?\247\315b#\2701\202\311\317\211"..., 36, 0, NULL, 0) = 36
+29    recvfrom(4, 0x5c30e2a2ade0, 16, 0, NULL, NULL) = -1 EAGAIN (Resource temporarily unavailable)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL <unfinished ...>
+28    <... pselect6 resumed>)           = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL <unfinished ...>
+29    <... pselect6 resumed>)           = 0 (Timeout)
+29    pselect6(5, [4], NULL, [4], {tv_sec=1, tv_nsec=100000}, NULL) = 1 (in [4], left {tv_sec=0, tv_nsec=993077047})
+29    recvfrom(4, "", 16, 0, NULL, NULL) = 0
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] grace time = 12"..., 46) = 46
+29    alarm(0)                          = 114
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] Failed to accep"..., 81) = 81
+29    shutdown(4, SHUT_WR)              = 0
+29    recvfrom(4, "", 1024, 0, NULL, NULL) = 0
+29    close(4)                          = 0
+29    getpid()                          = 29
+29    write(2, "[PID 29]: [SSHD] Return from clo"..., 52) = 52
+29    exit_group(0)                     = ?
+29    +++ exited with 0 +++
+28    <... pselect6 resumed>)           = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL) = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL) = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL) = 0 (Timeout)
+28    pselect6(4, [3], [], [], {tv_sec=1, tv_nsec=0}, NULL) = ? ERESTARTNOHAND (To be restarted if no handler)
+28    --- SIGINT {si_signo=SIGINT, si_code=SI_KERNEL} ---
+28    write(2, "Closing down wolfSSHD\n", 22) = 22
+28    rt_sigreturn({mask=[]})           = -1 EINTR (Interrupted system call)
+28    exit_group(0)                     = ?
+28    +++ exited with 0 +++

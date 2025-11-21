@@ -1,0 +1,15 @@
+# wolfSSH sshd configuration file
+
+# Network
+Port 22
+
+# Authentication
+PermitRootLogin no
+PasswordAuthentication yes
+PermitEmptyPasswords no
+
+# Host keys
+HostKey /etc/ssh/sshd_rsa
+
+# Timeouts
+LoginGraceTime 120
