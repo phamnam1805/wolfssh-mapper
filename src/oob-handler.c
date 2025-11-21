@@ -7,6 +7,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <errno.h>
+#include <unistd.h>
 
 // Function pointer for original recvfrom
 ssize_t (*original_recvfrom)(int sockfd, void *buf, size_t len, int flags,
@@ -33,16 +34,16 @@ ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,
                  struct sockaddr *src_addr, socklen_t *addrlen) {
 
     // Log before calling recvfrom
-    fprintf(stderr, "[OOB-HANDLER] recvfrom called: sockfd=%d, len=%zu, flags=0x%x\n",
-            sockfd, len, flags);
+    fprintf(stderr, "[OOB-HANDLER] pid=%d recvfrom: sockfd=%d, len=%zu, flags=0x%x\n",
+            getpid(), sockfd, len, flags);
     fflush(stderr);
 
     return original_recvfrom(sockfd, buf, len, flags, src_addr, addrlen);
 }
 
 static void handle_oob_byte(int fd, unsigned char b) {
-    fprintf(stderr, "[OOB-HANDLER] fd=%d urgent_byte=0x%02x ('%c')\n",
-            fd, b, (b >= 32 && b < 127) ? b : '?');
+    fprintf(stderr, "[OOB-HANDLER] pid=%d fd=%d urgent_byte=0x%02x ('%c')\n",
+            getpid(), fd, b, (b >= 32 && b < 127) ? b : '?');
     fflush(stderr);
 }
 
@@ -56,8 +57,8 @@ ssize_t recv(int sockfd, void *buf, size_t len, int flags) {
     if (n == 1) handle_oob_byte(sockfd, b);
 
     // Log before calling recv
-    fprintf(stderr, "[OOB-HANDLER] recv: sockfd=%d, len=%zu, flags=0x%x\n",
-            sockfd, len, flags);
+    fprintf(stderr, "[OOB-HANDLER] pid=%d recv: sockfd=%d, len=%zu, flags=0x%x\n",
+            getpid(), sockfd, len, flags);
     fflush(stderr);
 
     return original_recv(sockfd, buf, len, flags);

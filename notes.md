@@ -1,3 +1,35 @@
+Tasks
+- have a working wolsshd (tested with ssh-run and ssh-mapper)
+- write the library to handle OOB bytes in recvfrom and pselect and
+   check ssh-run and ssh-mapper still work
+- handle OOB bytes in lib.rs
+
+diff --git a/src/lib.rs b/src/lib.rs
+index e3fb7e5..32cf89c 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -542,6 +542,12 @@ impl Context {
+     }
+
+     pub fn recv_raw(&mut self, stream: &mut TcpStream) -> Result<SSHMessage, SSHError> {
++        // do a select on the socket (RD + EX)
++        // if !RD and EX (there is no pending data but there is an OOB byte)
++        //    consume it
++        //    mark OOB as sendable
++        //    quit the function with a TimeOut
++        // fi
+         if !self.crypto_state.dec_material.enc_key.is_empty() {
+             match read_binstring(stream) {
+                 Ok(mut encrypted_msg) => {
+@@ -705,6 +711,7 @@ impl Context {
+             if msg == "NewKeys" && self.implicit_transitions {
+                 self.crypto_state.install_enc_keys();
+             }
++            // TODO if OOB sendable, send it and mark OOB as not sendable
+         }
+         for action in actions {
+             self.run_internal_action(action);
+
 cargo run --bin ssh-mapper -- -s server -e 127.0.0.1:2222 -t 0.1 -v KexInit+Disconnect bdist --bdist 1
 
 cargo run --bin ssh-run -- -s server -e 127.0.0.1:2222 -t 0.1 KexInit KexECDHInit NewKeys ServiceRequestUserAuth AuthRequestPassword
