@@ -9,36 +9,16 @@
 #include <errno.h>
 #include <unistd.h>
 
-// Function pointer for original recvfrom
-ssize_t (*original_recvfrom)(int sockfd, void *buf, size_t len, int flags,
-                                struct sockaddr *src_addr, socklen_t *addrlen) = NULL;
+// Function pointer for original recv
 ssize_t (*original_recv)(int sockfd, void *buf, size_t len, int flags);
 
 __attribute__((constructor)) void register_original_functions() {
-    // Load the original recvfrom function
-    original_recvfrom = (ssize_t (*)(int, void *, size_t, int,
-                                 struct sockaddr *, socklen_t *))
-                    dlsym(RTLD_NEXT, "recvfrom");
-    if (original_recvfrom == NULL) {
-        fprintf(stderr, "Error loading original recvfrom: %s\n", dlerror());
-    }
     // Load the original recv function
     original_recv = (ssize_t (*)(int, void *, size_t, int))
                     dlsym(RTLD_NEXT, "recv");;
     if (original_recv == NULL) {
         fprintf(stderr, "Error loading original recv: %s\n", dlerror());
     }
-}
-// Hook function for recvfrom
-ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,
-                 struct sockaddr *src_addr, socklen_t *addrlen) {
-
-    // Log before calling recvfrom
-    fprintf(stderr, "[OOB-HANDLER] pid=%d recvfrom: sockfd=%d, len=%zu, flags=0x%x\n",
-            getpid(), sockfd, len, flags);
-    fflush(stderr);
-
-    return original_recvfrom(sockfd, buf, len, flags, src_addr, addrlen);
 }
 
 static void handle_oob_byte(int fd, unsigned char b) {
