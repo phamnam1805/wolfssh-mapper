@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -fPIC
+CFLAGS = -Wall -Wextra -fPIC -g -O0
 LDFLAGS = -shared -ldl
 
 all: build/oob-handler.so build/send-oob
@@ -10,7 +10,7 @@ build/oob-handler.so: src/oob-handler.c
 
 build/send-oob: src/send-oob.c
 	@mkdir -p build
-	$(CC) -Wall -Wextra -o $@ $<
+	$(CC) -Wall -Wextra -g -o $@ $<
 
 clean:
 	rm -rf build

@@ -100,3 +100,54 @@ $ docker run -ti --rm -p 2222:22 wolfssh
      3  apt install strace vim less
      4  strace -f -o /tmp/wolfsshd.log wolfsshd -d -h /etc/ssh/sshd_rsa -D
 ```
+
+Normal without oob
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=255, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=4, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=4, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=208, flags=0x0 
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=4, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=72, flags=0x0 
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=8, flags=0x0 
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=3, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=2, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=2, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=8, flags=0x0 
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=16, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=16, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=36, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=16, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=16, flags=0x0
+[OOB-HANDLER] pid=150 recv: sockfd=4, len=68, flags=0x0 
+
+With oob
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=255, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=208, flags=0x0
+[OOB-HANDLER] pid=153 fd=4 urgent_byte=0x58 ('X')
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=4, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=3, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=3, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=72, flags=0x0
+[OOB-HANDLER] pid=153 fd=4 urgent_byte=0x58 ('X')
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=2, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=8, flags=0x0
+[OOB-HANDLER] pid=153 fd=4 urgent_byte=0x58 ('X')
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=16, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=16, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=36, flags=0x0
+[OOB-HANDLER] pid=153 fd=4 urgent_byte=0x58 ('X')
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=16, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=16, flags=0x0
+[OOB-HANDLER] pid=153 recv: sockfd=4, len=68, flags=0x0
+[OOB-HANDLER] pid=153 fd=4 urgent_byte=0x58 ('X')
