@@ -151,3 +151,38 @@ With oob
 [OOB-HANDLER] pid=153 recv: sockfd=4, len=16, flags=0x0
 [OOB-HANDLER] pid=153 recv: sockfd=4, len=68, flags=0x0
 [OOB-HANDLER] pid=153 fd=4 urgent_byte=0x58 ('X')
+
+
+- the preloaded library should keep a boolean to know whether the
+  mapper has sent an OOB byte (which can be seen as a token : at each
+  time only one of the party [library/mapper] is suppose to hold the
+  token, and at the start, the token is held by the mapper);
+- the mapper should also keep a boolean to know whether it is currently
+  holding the token;
+- [MAPPER] when the mapper is done sending a message, it should send
+  an OOB byte and mark the token as in the hands of the target;
+- [MAPPER] when the mapper is about to read on the socket (which is
+  currently simply a read guarded by a timeout), it should try and read
+  an OOB (in a non-blocking way), and if it finds one, it should put
+  the timeout to zero and proceed (since OOB can be received before the
+  data, we should still exhaust the remaining data to read). It should
+  also note that it (the mapper) is holding the token again;
+- [LIBRARY] I suppose we know which syscall to monitor, which is
+  simple in the wolfsshd case: it is all the socket-related calls, and
+  they all happen on file descriptor 0; however, in other cases,
+  knowing which fd to monitor is a task which will be necessary (and
+  sometimes complex);
+- [LIBRARY] When the server calls recv/recv_from (or read) on a
+  monitored socket, if the library is currently holding the token, it
+  should write an OOB byte and mark the token as gone. Then, it should
+  proceed with the actual read call (*);
+- [LIBRARY] When the server calls recv/recv_from (or read) on a
+  monitored socket, if the library is currently *not* holding the token,
+  it should try to read an OOB in a non blocking way (no select needs
+  to be involved I believe). If it gets an OOB, the library will note
+  that it is now holding the token, and proceed with the read;
+- [LIBRARY] When the server calls select/poll or their variants, and if
+  the monitored socket is in the read_fds *and not in the write_fds*
+  (i.e. the server is trying to only read from the socket), if the
+  library is currently holding the token, it should send it as in the
+  read case earlier (case (*)).
