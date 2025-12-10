@@ -130,13 +130,7 @@ ssize_t recv(int sockfd, void *buf, size_t len, int flags) {
             getpid(), sockfd, len, flags, has_token);
     fflush(stderr);
 
-    // If library has token, send it before reading
-    if (has_token) {
-        send_oob_token(sockfd);
-    } else {
-        // If library doesn't have token, try to receive one
-        try_recv_oob_token(sockfd);
-    }
+    try_recv_oob_token(sockfd);
 
     // Proceed with actual read
     return original_recv(sockfd, buf, len, flags);
@@ -149,6 +143,9 @@ ssize_t recv(int sockfd, void *buf, size_t len, int flags) {
 int select(int nfds, fd_set *readfds, fd_set *writefds,
            fd_set *exceptfds, struct timeval *timeout) {
     bool should_send_token = false;
+    fd_set new_exceptfds;
+
+    FD_ZERO(&new_exceptfds);
 
     // Check if monitored fd is in readfds and not in writefds
     if (readfds && FD_ISSET(MONITORED_FD, readfds)) {
@@ -156,6 +153,8 @@ int select(int nfds, fd_set *readfds, fd_set *writefds,
             // Server is trying to only read from socket
             if (has_token) {
                 should_send_token = true;
+            } else {
+                FD_SET(MONITORED_FD, &new_exceptfds);
             }
         }
     }
@@ -168,7 +167,16 @@ int select(int nfds, fd_set *readfds, fd_set *writefds,
     }
 
     // Proceed with actual select
-    return original_select(nfds, readfds, writefds, exceptfds, timeout);
+    int ret = original_select(nfds, readfds, writefds, &new_exceptfds, timeout);
+    if (ret > 0 && FD_ISSET(MONITORED_FD, &new_exceptfds) && !FD_ISSET(MONITORED_FD, readfds) ) {
+        fprintf(stderr, "[OOB-HANDLER] in select new exceptfds\n",
+                getpid(), MONITORED_FD);
+        try_recv_oob_token(MONITORED_FD);
+        send_oob_token(MONITORED_FD);
+        return original_select(nfds, readfds, writefds, exceptfds, timeout);
+    }
+
+    return ret;
 }
 
 // Hook function for send
