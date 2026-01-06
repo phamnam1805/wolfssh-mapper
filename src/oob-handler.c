@@ -82,6 +82,8 @@ int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen) {
         fprintf(stderr, "[OOB-HANDLER] pid=%d accept: new client_fd=%d from %s:%d, MONITORED_FD updated\n",
                 getpid(), client_fd, client_ip, client_port);
         fflush(stderr);
+
+        has_token = false;
     }
 
     return client_fd;
