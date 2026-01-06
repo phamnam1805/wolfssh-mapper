@@ -61,6 +61,7 @@ RUST_LOG=DEBUG ./ssh-run \
 ```text
 wolfssh-mapper/
 ├── build.sh              # Docker image build script
+├── Dockerfile            # Docker image definition
 ├── docker-compose.yml    # Container configuration
 ├── build/               # Compiled binaries and libraries
 │   └── oob-handler.so  # OOB handler shared library
