@@ -39,15 +39,11 @@ RUN cd wolfssl && \
     ldconfig
 
 # Build wolfSSH with specific version and debug symbols
-# You can switch DEBUG_OPTIONS to "--enable-debug" if you want more messages
-ARG DEBUG_OPTIONS=
-# You can also add a "RUN sed -i 's/^\(CFLAGS = .*\)/\1 -DSHOW_SECRETS/' Makefile && \" line before make if needed
 RUN git clone --depth 1 --branch v1.4.21-stable https://github.com/wolfSSL/wolfssh.git
 RUN cd wolfssh && \
     ./autogen.sh && \
     ./configure \
         --enable-all \
-        ${DEBUG_OPTIONS} \
         CFLAGS="-g -O0 -fno-omit-frame-pointer" \
         LDFLAGS="-g" && \
     sed -i 's/^\(CFLAGS = *\)-Werror\(.*\)/\1\2/' Makefile && \

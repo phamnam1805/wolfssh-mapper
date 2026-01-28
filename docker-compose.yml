@@ -9,17 +9,16 @@ services:
         DEBUG_OPTIONS: ""
     image: wolfssh:latest
     container_name: wolfssh-server
-    ports:
-      - "2222:22"
     stdin_open: true
     tty: true
     working_dir: /project
     volumes:
       - ./:/project
-    privileged: true
-    cap_add:
-      - SYS_PTRACE      # For debugging with gdb, strace
-      - SYS_ADMIN       # For advanced system operations
-      - NET_ADMIN       # For network operations
+    network_mode: host
+    # privileged: true
+    # cap_add:
+      # - SYS_PTRACE      # For debugging with gdb, strace
+      # - SYS_ADMIN       # For advanced system operations
+      # - NET_ADMIN       # For network operations
     # security_opt:
     #   - seccomp:unconfined  # Disable seccomp for debugging

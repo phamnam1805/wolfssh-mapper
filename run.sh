@@ -1,1 +1,1 @@
-wolfsshd -d -h /etc/ssh/sshd_rsa -D
+wolfsshd -d -h /etc/ssh/sshd_rsa -D -p 2222

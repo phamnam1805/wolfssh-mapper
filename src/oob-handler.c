@@ -12,9 +12,10 @@
 #include <poll.h>
 #include <stdbool.h>
 #include <fcntl.h>
+#include <netinet/tcp.h>
 
 // Enable/disable logging - set to true to enable logs
-static bool ENABLE_LOGGING = true;
+static bool ENABLE_LOGGING = false;
 
 // Logging macro - only logs if ENABLE_LOGGING is true
 #define LOG(...)                          \
@@ -100,13 +101,12 @@ int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
         LOG("[OOB-HANDLER] pid=%d accept: new client_fd=%d from %s:%d, MONITORED_FD updated\n",
             getpid(), client_fd, client_ip, client_port);
 
-        // Check SO_OOBINLINE status
-        // int oobinline = 0;
-        // socklen_t optlen = sizeof(oobinline);
-        // if (getsockopt(client_fd, SOL_SOCKET, SO_OOBINLINE, &oobinline, &optlen) == 0)
-        // {
-        //     LOG("[OOB-HANDLER] pid=%d accept: SO_OOBINLINE=%d\n", getpid(), oobinline);
-        // }
+        // Disable Nagle's algorithm for low-latency OOB communication
+        int nodelay = 1;
+        if (setsockopt(client_fd, IPPROTO_TCP, TCP_NODELAY, &nodelay, sizeof(nodelay)) < 0)
+        {
+            LOG("[OOB-HANDLER] pid=%d failed to set TCP_NODELAY: %s\n", getpid(), strerror(errno));
+        }
 
         has_token = false;
     }
@@ -227,7 +227,7 @@ int select(int nfds, fd_set *readfds, fd_set *writefds,
 
     // Decide what to do based on token state
     bool should_release_token = false;
-    struct timeval zero_timeout = {0, 0};
+    struct timeval zero_timeout = {0, 100};
     struct timeval *actual_timeout = timeout;
 
     if (!has_token)
@@ -260,7 +260,7 @@ int select(int nfds, fd_set *readfds, fd_set *writefds,
         }
     }
 
-    // Release token if we decided to (after select, after potential recv)
+    // Release token if we decided to (after select)
     if (should_release_token)
     {
         LOG("[OOB-HANDLER] pid=%d select: releasing token after reading\n", getpid());
