@@ -194,80 +194,27 @@ ssize_t recv(int sockfd, void *buf, size_t len, int flags)
 // - If has_token: send token and call original select with timeout=0
 // - If !has_token: monitor exceptfds for OOB token with original timeout
 int select(int nfds, fd_set *readfds, fd_set *writefds,
-           fd_set *exceptfds, struct timeval *timeout)
-{
-
-    // Ultra-fast path: If MONITORED_FD >= nfds, it cannot be in any fd_set
-    // This is just a single integer comparison, much faster than FD_ISSET
-    if (MONITORED_FD >= nfds)
-    {
-        return original_select(nfds, readfds, writefds, exceptfds, timeout);
-    }
-
-    // Fast path: Check if MONITORED_FD is in readfds or writefds
-    // Cache the results to avoid redundant FD_ISSET calls
-    bool monitoring_read = readfds && FD_ISSET(MONITORED_FD, readfds);
-    bool monitoring_write = writefds && FD_ISSET(MONITORED_FD, writefds);
-    if (!monitoring_read && !monitoring_write)
-    {
-        // Fast path: MONITORED_FD not being monitored, pass through directly
-        return original_select(nfds, readfds, writefds, exceptfds, timeout);
-    }
-
-    // MONITORED_FD is being monitored - handle OOB logic
-    fd_set new_exceptfds;
-    if (exceptfds)
-    {
-        new_exceptfds = *exceptfds;
-    }
-    else
-    {
-        FD_ZERO(&new_exceptfds);
-    }
-
-    // Decide what to do based on token state
-    bool should_release_token = false;
-    struct timeval zero_timeout = {0, 100};
-    struct timeval *actual_timeout = timeout;
-
-    if (!has_token)
-    {
-        // Don't have token - wait for OOB from client with normal timeout
-        FD_SET(MONITORED_FD, &new_exceptfds);
-    }
-    else
-    {
-        // Have token - use zero timeout to avoid blocking
-        actual_timeout = &zero_timeout;
-
-        // Check if we're done sending (monitoring read = want to recv)
-        if (monitoring_read && !monitoring_write)
-        {
-            should_release_token = true;
-            LOG("[OOB-HANDLER] pid=%d select: has_token, will release after select\n", getpid());
+           fd_set *exceptfds, struct timeval *timeout) {
+    bool should_send_token = false;
+    
+    // Check if monitored fd is in readfds and not in writefds
+    if (readfds && FD_ISSET(MONITORED_FD, readfds)) {
+        if (!writefds || !FD_ISSET(MONITORED_FD, writefds)) {
+            // Server is trying to only read from socket
+            // fprintf(stderr, "[OOB-HANDLER] pid=%d select: monitored_fd=%d in read_fds only\n", getpid(), MONITORED_FD);
+            if (has_token) {
+                should_send_token = true;
+            } 
         }
     }
 
-    int ret = original_select(nfds, readfds, writefds, &new_exceptfds, actual_timeout);
-
-    if (!has_token && ret > 0)
-    {
-        if (FD_ISSET(MONITORED_FD, &new_exceptfds))
-        {
-            if (try_recv_oob_token(MONITORED_FD, 0)){
-                ret -= 1; // Adjust return value as we handled the OOB
-            }
-        }
-    }
-
-    // Release token if we decided to (after select)
-    if (should_release_token)
-    {
-        LOG("[OOB-HANDLER] pid=%d select: releasing token after reading\n", getpid());
+    if (should_send_token) {
+        LOG("[OOB-HANDLER] pid=%d select: monitored_fd=%d in read_fds only, sending token\n",
+                getpid(), MONITORED_FD);
         send_oob_token(MONITORED_FD);
     }
 
-    return ret;
+    return original_select(nfds, readfds, writefds, exceptfds, timeout);
 }
 
 // Hook function for send
