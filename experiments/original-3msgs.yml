@@ -6,22 +6,23 @@ services:
       args:
         DEBUG_OPTIONS: ""
     image: wolfssh:latest
-    container_name: wolfssh-server
+    container_name: wolfssh-original-3msgs
     stdin_open: true
     tty: true
     working_dir: /project
     volumes:
       - ../:/project
-    command: >
-      bash -c "
+    command:
+      - bash
+      - -c
+      - |
         mkdir -p /project/logs/original-3msgs &&
         wolfsshd -E /project/logs/original-3msgs/sshd.log -h /etc/ssh/sshd_rsa -p 2222 &
         sleep 1 &&
-        /project/original-ssh-mapper-binaries/ssh-mapper
-          --endpoint localhost:2222
-          --sul-mode server
-          --timeout 2
-          --output-dir /project/logs/original-3msgs
-          --vocabulary KexInit+KexECDHInit+NewKeys
+        /project/original-ssh-mapper-binaries/ssh-mapper \
+          --endpoint localhost:2222 \
+          --sul-mode server \
+          --timeout 2 \
+          --output-dir /project/logs/original-3msgs \
+          --vocabulary KexInit+KexECDHInit+NewKeys \
           bdist --bdist 3 > /project/logs/original-3msgs/stats.log
-      "
