@@ -18,13 +18,13 @@ services:
       - bash
       - -c
       - |
-        mkdir -p /project/logs/original-3msgs/run-${RUN_ID} &&
-        wolfsshd -E /project/logs/original-3msgs/run-${RUN_ID}/sshd.log -h /etc/ssh/sshd_rsa -p 2222 &
+        mkdir -p /project/logs/original-3msgs/run-$${RUN_ID} &&
+        wolfsshd -E /project/logs/original-3msgs/run-$${RUN_ID}/sshd.log -h /etc/ssh/sshd_rsa -p 2222 &
         sleep 1 &&
         /project/original-ssh-mapper-binaries/ssh-mapper \
           --endpoint localhost:2222 \
           --sul-mode server \
           --timeout 2 \
-          --output-dir /project/logs/original-3msgs/run-${RUN_ID}/mapper-logs \
+          --output-dir /project/logs/original-3msgs/run-$${RUN_ID}/mapper-logs \
           --vocabulary KexInit+KexECDHInit+NewKeys \
-          bdist --bdist 3 > /project/logs/original-3msgs/run-${RUN_ID}/stats.log
+          bdist --bdist 3 > /project/logs/original-3msgs/run-$${RUN_ID}/stats.log
