@@ -19,7 +19,7 @@ services:
         mkdir -p /project/logs/original-3msgs &&
         wolfsshd -E /project/logs/original-3msgs/sshd.log -h /etc/ssh/sshd_rsa -p 2222 &
         sleep 1 &&
-        /project/original-ssh-mapper-binaries/ssh-mapper \
+        /project/original-ssh-maper-binaries/ssh-mapper \
           --endpoint localhost:2222 \
           --sul-mode server \
           --timeout 2 \
