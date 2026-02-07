@@ -1,0 +1,30 @@
+services:
+  wolfssh:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DEBUG_OPTIONS: ""
+    image: wolfssh:latest
+    container_name: wolfssh-original-all-bdist-1
+    stdin_open: true
+    tty: true
+    working_dir: /project
+    volumes:
+      - ../:/project
+    environment:
+      - RUN_ID=0
+    command:
+      - bash
+      - -c
+      - |
+        mkdir -p /project/logs/original-all-bdist-1/run-$${RUN_ID} &&
+        wolfsshd -E /project/logs/original-all-bdist-1/run-$${RUN_ID}/sshd.log -h /etc/ssh/sshd_rsa -p 2222 &
+        sleep 1 &&
+        /project/original-ssh-mapper-binaries/ssh-mapper \
+          --endpoint localhost:2222 \
+          --sul-mode server \
+          --timeout 2 \
+          --output-dir /project/logs/original-all-bdist-1/run-$${RUN_ID}/mapper-logs \
+          --vocabulary ALL \
+          bdist --bdist 1 > /project/logs/original-all-bdist-1/run-$${RUN_ID}/stats.log
