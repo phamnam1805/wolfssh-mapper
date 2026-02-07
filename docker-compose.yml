@@ -14,7 +14,7 @@ services:
     working_dir: /project
     volumes:
       - ./:/project
-    network_mode: host
+    # network_mode: host
     # privileged: true
     # cap_add:
       # - SYS_PTRACE      # For debugging with gdb, strace

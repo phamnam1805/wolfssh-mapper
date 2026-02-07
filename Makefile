@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -fPIC -g -O0
+CFLAGS = -Wall -Wextra -fPIC -g -O2
 LDFLAGS = -shared -ldl
 
 all: build/oob-handler.so build/send-oob build/syscall-capture.so
@@ -14,7 +14,7 @@ build/syscall-capture.so: src/syscall-capture.c
 
 build/send-oob: src/send-oob.c
 	@mkdir -p build
-	$(CC) -Wall -Wextra -g -o $@ $<
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
 
 clean:
 	rm -rf build

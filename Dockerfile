@@ -32,7 +32,7 @@ RUN cd wolfssl && \
         --enable-ssh \
         --enable-keygen \
         --enable-opensslall \
-        CFLAGS="-g -O0 -fno-omit-frame-pointer" \
+        CFLAGS="-g -O2 -fno-omit-frame-pointer" \
         LDFLAGS="-g" && \
     make -j$(nproc) && \
     make install && \
@@ -44,7 +44,7 @@ RUN cd wolfssh && \
     ./autogen.sh && \
     ./configure \
         --enable-all \
-        CFLAGS="-g -O0 -fno-omit-frame-pointer" \
+        CFLAGS="-g -O2 -fno-omit-frame-pointer" \
         LDFLAGS="-g" && \
     sed -i 's/^\(CFLAGS = *\)-Werror\(.*\)/\1\2/' Makefile && \
     make -j$(nproc) && \
