@@ -1,3 +1,5 @@
+name: original-3msgs
+
 services:
   wolfssh:
     build:

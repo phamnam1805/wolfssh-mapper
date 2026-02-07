@@ -1,3 +1,5 @@
+name: original-6msgs
+
 services:
   wolfssh:
     build:

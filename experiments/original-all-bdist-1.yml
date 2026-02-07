@@ -1,3 +1,5 @@
+name: original-all-bdist-1
+
 services:
   wolfssh:
     build:
