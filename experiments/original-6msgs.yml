@@ -18,6 +18,7 @@ services:
       - bash
       - -c
       - |
+        rm -rf /project/logs/original-6msgs/run-$${RUN_ID} &&
         mkdir -p /project/logs/original-6msgs/run-$${RUN_ID} &&
         wolfsshd -E /project/logs/original-6msgs/run-$${RUN_ID}/sshd.log -h /etc/ssh/sshd_rsa -p 2222 &
         sleep 1 &&
