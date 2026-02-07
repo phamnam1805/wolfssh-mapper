@@ -1,0 +1,33 @@
+name: oob-3msgs
+
+services:
+  wolfssh:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DEBUG_OPTIONS: ""
+    image: wolfssh:latest
+    container_name: wolfssh-oob-3msgs
+    stdin_open: true
+    tty: true
+    working_dir: /project
+    volumes:
+      - ../:/project
+    environment:
+      - RUN_ID=0
+    command:
+      - bash
+      - -c
+      - |
+        rm -rf /project/logs/oob-3msgs/run-$${RUN_ID} &&
+        mkdir -p /project/logs/oob-3msgs/run-$${RUN_ID} &&
+        LD_PRELOAD=/project/build/oob-handler.so wolfsshd -E /project/logs/oob-3msgs/run-$${RUN_ID}/sshd.log -h /etc/ssh/sshd_rsa -p 2222 &
+        sleep 1 &&
+        /project/oob-ssh-mapper-binaries/ssh-mapper \
+          --endpoint localhost:2222 \
+          --sul-mode server \
+          --timeout 2 \
+          --output-dir /project/logs/oob-3msgs/run-$${RUN_ID}/mapper-logs \
+          --vocabulary KexInit+KexECDHInit+NewKeys \
+          bdist --bdist 3 > /project/logs/oob-3msgs/run-$${RUN_ID}/stats.log

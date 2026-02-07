@@ -2,7 +2,10 @@
 
 ## Overview
 
-Running with [ssh-mapper](https://gitlab.com/phamnam1805/ssh-mapper) branch `oob-handler` commit `769ecadb79b0873ddee6004368a2f2f71a2699bc`.
+This project provides two variants of the SSH mapper binary, each using a different optimization strategy:
+
+- `original-ssh-mapper-binaries/` — optimized with **EOF + known replies**
+- `oob-ssh-mapper-binaries/` — optimized with **EOF + OOB**
 
 ## Getting Started
 
